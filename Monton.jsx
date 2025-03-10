@@ -6,4 +6,10 @@ function Monton() {
   )
 }
 
+const Windyl () => {
+  return (
+    <></>
+  )
+}
+
 export default Monton
