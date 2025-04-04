@@ -1,1 +1,6 @@
-# BSIT-2A-1st-Sem-2025
+MEMBERS:
+- Edward Dugan
+- Archie Boiser
+- Khyle Solis
+- Noel Biol
+- Ahron Ducusin
