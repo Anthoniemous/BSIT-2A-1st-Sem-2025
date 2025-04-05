@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    background: rgb(30 58 138);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    color: rgb(30 58 138);
+}
+
+.durso-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    animation: rotate 20s linear infinite;
+    margin-bottom: 20px;
+}
+
+.durso-pic img {
+    width: 40%;
+    height: auto;
+    opacity: 0.8;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.admin-wrapper {
+    background: rgba(255, 255, 255, 0.711);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    margin-top: 20px; 
+}
+
+.admin-header {
+    width: 100%;
+    background-color:rgb(30 58 138);
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.admin-header h1 {
+    margin: 0;
+}
+
+.admin-header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-header nav ul li {
+    margin: 0 10px;
+}
+
+.admin-header nav ul li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.admin-header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    width: 100%;
+    margin: 20px auto;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    color: rgba(1, 0, 45, 0.778);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.stats-container .stat-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;   
+    border-radius: 8px;       
+    padding: 16px;            
+    text-align: center;      
+    color: #333;              
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin: 8px;             
+}
+
+.input-box {
+    margin: 10px 0;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: rgb(30 58 138);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0a0387;
+}

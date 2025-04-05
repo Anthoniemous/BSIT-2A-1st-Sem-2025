@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <div class="durso-pic">
+        <img src="img/dorsu-logo.png" alt="Dorsu Logo">
+    </div>
+    <div class="admin-wrapper">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="#user-management">User Management</a></li>
+                    <li><a href="#statistics">Statistics</a></li>
+                    <li><a href="#add-user">Add User</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="user-management">
+                <h2>User Management</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+            </section>
+            <section id="statistics">
+                <h2>Statistics</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Total Users</h3>
+                        <p id="total-users">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Active Users</h3>
+                        <p id="active-users">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>New Registrations</h3>
+                        <p id="new-registrations">0</p>
+                    </div>
+                </div>
+            </section>
+            <section id="add-user">
+                <h2>Add User</h2>
+                <form id="add-user-form">
+                    <div class="input-box">
+                        <label for="new-username">Username</label>
+                        <input type="text" id="new-username" placeholder="Enter username" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="new-email">Email</label>
+                        <input type="email" id="new-email" placeholder="Enter email" required>
+                    </div>
+                    <button type="submit" class="btn">Add User</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    //<script src="admin-dashboard.js"></script>
+</body>
+</html>
