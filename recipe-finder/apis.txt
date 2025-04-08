@@ -1,0 +1,16 @@
+// for food api
+https://api.edamam.com/api/recipes/v2?type=public&q=<INGREDIENT>&app_id=99f65177&app_key=ecb411eb41e5416150875af0c19ffec7
+
+
+search ingrediend drinks
+https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=vodka{mao ingredients}
+
+search by name drinks
+https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita{mao ni}
+
+get random drinks
+https://www.thecocktaildb.com/api/json/v1/1/random.php
+
+edaman API 
+
+thecocktaildb
