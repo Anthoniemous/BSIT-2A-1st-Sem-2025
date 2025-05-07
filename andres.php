@@ -92,7 +92,7 @@ $lname = "Andres";
   <div class="divider"></div>
 
   <div class="message">
-    <?php print "Welcome to my soft green space 💚"; ?>
+    <?php print "Welcome to my soft green space  💚"; ?>
   </div>
 </div>
 
