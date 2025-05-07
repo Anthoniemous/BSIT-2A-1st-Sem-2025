@@ -1,12 +1,12 @@
-><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome Page with PHP</title>
+    <title>Assignment PHP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:rgb(255, 22, 197); /* light yellow */
+            background-color:hsl(328, 100.00%, 73.10%);
             text-align: center;
             padding-top: 100px;
             color: #333;
@@ -43,28 +43,41 @@
             font-size: 22px;
             color: #444;
         }
+
+        .back-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <h1>WELCOME TO MY PAGE</h1>
+    <h1>WELCOME! This is a sample for Echo and Print!</h1>
 
-    <form method="post">
-        <button type="submit" name="echo" class="button">Echo</button>
-        <button type="submit" name="print" class="button">Print</button>
-    </form>
+    <?php
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['choice'])) {
+        echo '<div class="message">';
+        if ($_POST['choice'] === 'echo') {
+            echo "You clicked the <strong>Echo</strong> button. Message displayed using echo.";
+        } elseif ($_POST['choice'] === 'print') {
+            print "You clicked the <strong>Print</strong> button. Message displayed using print.";
+        } else {
+            echo "Invalid choice.";
+        }
+        echo '</div>';
 
-    <div class="message">
-        <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['echo'])) {
-                    echo "This message is displayed using <strong>echo</strong>.";
-                } elseif (isset($_POST['print'])) {
-                    print "This message is displayed using <strong>print</strong>.";
-                }
-            }
-        ?>
-    </div>
+        echo '<div class="back-button">';
+        echo '<form method="get">';
+        echo '<button type="submit" class="button">Go Back</button>';
+        echo '</form>';
+        echo '</div>';
+    } else {
+        echo '<form method="post">';
+        echo '<button type="submit" name="choice" value="echo" class="button">Echo</button>';
+        echo '<button type="submit" name="choice" value="print" class="button">Print</button>';
+        echo '</form>';
+    }
+    ?>
 
 </body>
 </html>
