@@ -51,7 +51,7 @@
 </head>
 <body>
 
-    <h1>WELCOME! This is a sample for Echo and Print!</h1>
+    <h1>WELCOME! This is my sample for Echo and Print!</h1>
 
     <?php
     
