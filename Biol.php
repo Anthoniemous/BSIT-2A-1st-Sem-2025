@@ -8,7 +8,7 @@ echo '
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:rgb(163, 30, 30);
+            background-color: rgb(163, 30, 30);
             text-align: center;
             padding: 50px;
         }
@@ -30,15 +30,17 @@ echo '
             color: #666;
         }
 
-
         .button:hover {
             background-color: #2980b9;
         }
     </style>
 </head>
 <body>
+';
+
+print '
     <div class="container">
-        <h1> I Love You Goodbye</h1>
+        <h1>I Love You Goodbye</h1>
         <h2>Noel Biol</h2>
     </div>
 </body>
