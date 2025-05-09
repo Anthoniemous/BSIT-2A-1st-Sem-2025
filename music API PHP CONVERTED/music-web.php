@@ -1,0 +1,201 @@
+<?php
+// Start the session for user preferences
+session_start();
+
+// Helper functions
+function getSavedTheme() {
+    return isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
+}
+
+// Set default theme if not already set
+$theme = getSavedTheme();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicHub | Your Music, Your Way</title>
+    <link rel="stylesheet" href="music-web.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body<?php echo ($theme == 'dark') ? ' class="dark-mode"' : ''; ?>>
+    <!-- Navigation Bar -->
+    <nav>
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="logo">
+            <i class="fas fa-headphones-alt"></i>
+            <span>MusicHub</span>
+        </div>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#" data-section="home" class="active">Discover</a></li>
+            <li><a href="#" data-section="trending">Trending</a></li>
+            <li><a href="#" data-section="playlists">Your Library</a></li>
+            <li><a href="#" data-section="genres">Genres</a></li>
+        </ul>
+        
+        <div class="nav-controls">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search" placeholder="Search songs, artists...">
+            </div>
+            <button id="search-toggle" class="action-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <button id="theme-toggle" title="Toggle dark mode">
+                <i class="fas fa-<?php echo ($theme == 'dark') ? 'sun' : 'moon'; ?>"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-compass"></i> Discover New Music
+            </h2>
+            <div class="controls">
+                <button class="control-btn" id="refresh-discover">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <select id="discover-filter" class="control-btn">
+                    <option value="all">All Genres</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                    <option value="hip-hop">Hip Hop</option>
+                    <option value="electronic">Electronic</option>
+                </select>
+            </div>
+        </div>
+        <div class="music-container" id="music-container">
+            <?php include('includes/loading-placeholder.php'); ?>
+        </div>
+    </div>
+
+    <!-- Trending Section -->
+    <div id="trending" class="hidden section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-fire"></i> Trending Now
+            </h2>
+            <div class="controls">
+                <button class="control-btn" id="refresh-trending">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <select id="trending-period" class="control-btn">
+                    <option value="day">Today</option>
+                    <option value="week" selected>This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+        </div>
+        <div class="music-container" id="trending-container">
+            <?php include('includes/loading-placeholder.php'); ?>
+        </div>
+    </div>
+
+    <!-- Playlists Section -->
+    <div id="playlists" class="hidden section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-list"></i> Your Library
+            </h2>
+            <div class="controls">
+                <button class="control-btn" id="clear-playlist">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+                <button class="control-btn" id="sort-playlist">
+                    <i class="fas fa-sort"></i> Sort
+                </button>
+            </div>
+        </div>
+        <div class="music-container" id="playlist-container">
+            <?php
+            // Get playlist from cookies and render them
+            if (isset($_COOKIE['playlist']) && !empty($_COOKIE['playlist'])) {
+                $playlist = json_decode($_COOKIE['playlist'], true);
+                if (empty($playlist)) {
+                    include('includes/empty-playlist.php');
+                }
+            } else {
+                include('includes/empty-playlist.php');
+            }
+            ?>
+        </div>
+    </div>
+    
+    <!-- Genres Section -->
+    <div id="genres" class="hidden section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-guitar"></i> Browse Genres
+            </h2>
+        </div>
+        <div class="music-container" id="genres-container">
+            <?php include('includes/genres.php'); ?>
+        </div>
+    </div>
+
+    <!-- Player Bar -->
+    <div class="player-bar" id="player-bar">
+        <div class="now-playing">
+            <img id="current-song-img" src="/api/placeholder/48/48" alt="Now playing">
+            <div class="now-playing-info">
+                <div class="now-playing-title" id="current-song-title">Not Playing</div>
+                <div class="now-playing-artist" id="current-song-artist">Select a song</div>
+            </div>
+        </div>
+        
+        <div class="player-controls">
+            <div class="player-buttons">
+                <button class="player-btn" id="shuffle-btn" title="Shuffle">
+                    <i class="fas fa-random"></i>
+                </button>
+                <button class="player-btn" id="prev-btn" title="Previous">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="player-btn primary" id="play-pause-btn" title="Play/Pause">
+                    <i class="fas fa-play" id="play-icon"></i>
+                </button>
+                <button class="player-btn" id="next-btn" title="Next">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button class="player-btn" id="repeat-btn" title="Repeat">
+                    <i class="fas fa-repeat"></i>
+                </button>
+            </div>
+            
+            <div class="player-progress">
+                <div class="progress-container">
+                    <span class="time" id="current-time">0:00</span>
+                    <div class="audio-progress" id="player-progress-bar">
+                        <div class="progress-bar" id="player-progress"></div>
+                    </div>
+                    <span class="time" id="duration">0:00</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="player-volume">
+            <button class="player-btn" id="mute-btn">
+                <i class="fas fa-volume-up" id="volume-icon"></i>
+            </button>
+            <div class="volume-slider" id="volume-slider">
+                <div class="volume-progress" id="volume-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Hidden audio element for playing music -->
+    <audio id="audio-player"></audio>
+
+    <script src="music-web.js"></script>
+</body>
+</html>
