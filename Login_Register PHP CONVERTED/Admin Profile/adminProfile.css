@@ -1,0 +1,204 @@
+ :root {
+      --bg-color: #f0f2f5;
+      --card-bg: white;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666;
+      --border-color: #eee;
+      --stats-bg: #f0f2f5;
+      --gradient-start: #757575;
+      --gradient-end: #cfcfcf;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    html:has(#theme-toggle:checked) {
+      --bg-color: #1a1a1a;
+      --card-bg: #2d2d2d;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --border-color: #404040;
+      --stats-bg: #333333;
+      --gradient-start:#757575;
+      --gradient-end: #cfcfcf;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle-wrapper {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+
+    .theme-toggle {
+      display: none;
+    }
+
+    .theme-toggle-label {
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: inset 0 0 5px var(--shadow-color);
+    }
+
+    .theme-toggle-label::after {
+      color: #ffff;
+      content: '☀️';
+      width: 26px;
+      height: 26px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: transform 0.3s;
+    }
+
+    .theme-toggle:checked + .theme-toggle-label::after {
+      color: #ffff;
+      transform: translateX(30px);
+      content: '🌙';
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px var(--shadow-color);
+      width: 100%;
+      max-width: 360px;
+      overflow: hidden;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .cover-photo {
+      height: 120px;
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      position: relative;
+    }
+
+    .profile-avatar {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--card-bg);
+      background: var(--card-bg);
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info {
+      margin-top: 70px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+
+    .profile-role {
+      color: var(--text-secondary);
+      font-size: 16px;
+      margin-bottom: 20px;
+      transition: color 0.3s;
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+      border-top: 1px solid var(--border-color);
+      transition: border-color 0.3s;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      transition: color 0.3s;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+      padding: 0 20px 20px;
+    }
+
+    .action-button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .primary-button {
+      background-color: var(--gradient-start);
+      color: white;
+    }
+
+    .primary-button:hover {
+      background-color: var(--gradient-end);
+      color: #1a1a1a;
+    }
+
+    .secondary-button {
+      background-color: var(--stats-bg);
+      color: var(--text-primary);
+    }
+
+    .secondary-button:hover {
+      filter: brightness(0.95);
+    }
